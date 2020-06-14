@@ -1,7 +1,7 @@
 /*
  * @Author: Vimalakirti
  * @Date: 2020-06-14 17:04:07
- * @LastEditTime: 2020-06-14 21:43:15
+ * @LastEditTime: 2020-06-14 21:49:26
  * @Description:
  * @FilePath: \Vue权限控制\初始代码\backend-rights-control\src\utils\http.js
  */
@@ -39,4 +39,15 @@ axios.interceptors.request.use(req => {
     // delete delete
   }
   return req
+})
+
+// 响应拦截
+axios.interceptors.response.use(res => {
+  if (res.data.meta.status === 401) {
+    router.push('/login')
+    sessionStorage.clear()
+    window.location.reload()
+  }
+
+  return res
 })
