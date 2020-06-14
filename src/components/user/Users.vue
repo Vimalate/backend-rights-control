@@ -20,6 +20,7 @@
           <el-button
             type="primary"
             @click="addDialogVisible = true"
+            v-permission="{action:'add',effect:'disabled'}"
           >添加用户</el-button>
         </el-col>
       </el-row>
@@ -39,9 +40,10 @@
         <el-table-column label="操作" width="180px">
           <template slot-scope="scope">
             <!-- 修改按钮 -->
-            <el-button 
-              type="primary" 
-              icon="el-icon-edit" 
+            <el-button
+              type="primary"
+              icon="el-icon-edit"
+              v-permission="{action:'edit',effect:'disabled'}"
               size="mini">
             </el-button>
             <!-- 删除按钮 -->
@@ -49,7 +51,7 @@
               type="danger"
               icon="el-icon-delete"
               size="mini"
-              @click="removeById(scope.row.id)">
+              @click="removeById(scope.row.id)"  v-permission="{action:'delete',effect:'disabled'}">
             </el-button>
             <!-- 分配角色按钮 -->
             <el-tooltip
@@ -57,9 +59,10 @@
               content="分配角色"
               placement="top"
               :enterable="false">
-              <el-button 
-                type="warning" 
-                icon="el-icon-setting" 
+              <el-button
+                type="warning"
+                icon="el-icon-setting"
+                 v-permission="{action:'edit',effect:'disabled'}"
                 size="mini">
               </el-button>
             </el-tooltip>
@@ -154,10 +157,10 @@ export default {
       // 添加表单的验证规则对象
       addFormRules: {
         username: [
-          { 
-            required: true, 
-            message: '请输入用户名', 
-            trigger: 'blur' 
+          {
+            required: true,
+            message: '请输入用户名',
+            trigger: 'blur'
           },
           {
             min: 3,
@@ -167,10 +170,10 @@ export default {
           }
         ],
         password: [
-          { 
-            required: true, 
-            message: '请输入密码', 
-            trigger: 'blur' 
+          {
+            required: true,
+            message: '请输入密码',
+            trigger: 'blur'
           },
           {
             min: 6,
@@ -180,25 +183,25 @@ export default {
           }
         ],
         email: [
-          { 
-            required: true, 
-            message: '请输入邮箱', 
-            trigger: 'blur' 
+          {
+            required: true,
+            message: '请输入邮箱',
+            trigger: 'blur'
           },
-          { 
-            validator: checkEmail, 
-            trigger: 'blur' 
+          {
+            validator: checkEmail,
+            trigger: 'blur'
           }
         ],
         mobile: [
-          { 
-            required: true, 
-            message: '请输入手机号', 
-            trigger: 'blur' 
+          {
+            required: true,
+            message: '请输入手机号',
+            trigger: 'blur'
           },
-          { 
-            validator: checkMobile, 
-            trigger: 'blur' 
+          {
+            validator: checkMobile,
+            trigger: 'blur'
           }
         ]
       }

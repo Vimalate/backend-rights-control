@@ -1,7 +1,7 @@
 /*
  * @Author: Vimalakirti
  * @Date: 2020-06-14 17:04:07
- * @LastEditTime: 2020-06-14 20:39:51
+ * @LastEditTime: 2020-06-14 21:11:02
  * @Description:
  * @FilePath: \Vue权限控制\初始代码\backend-rights-control\src\router.js
  */
@@ -86,6 +86,7 @@ export function initDynamicRoutes() {
   rightList.forEach(item => {
     item.children.forEach(item => {
       const temp = ruleMapping[item.path]
+      temp.meta = item.rights
       currentRoutes[2].children.push(temp)
     })
   })
